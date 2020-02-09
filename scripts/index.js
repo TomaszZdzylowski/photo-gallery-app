@@ -19,24 +19,23 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
+const inputFile = document.querySelector('.input-file');
+const flexboxContainer = document.querySelector('.l-flexbox-container');
+const storageRef = firebase.storage().ref('');
 
-const fileInput = document.getElementById('file-input');
-let storageRef = firebase.storage().ref('');
 
 
-fileInput.addEventListener('change', function (e) {
+inputFile.addEventListener('change', function (e) {
     var file = e.target.files[0];
-
     // Create the file metadata
     var metadata = {
         contentType: 'image/jpeg'
     };
-
-    // Upload file and metadata to the object 'images/mountains.jpg'
+    // Upload file and metadata 
     var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
 
     // Listen for state changes, errors, and completion of the upload.
-    uploadTask.on('state_changed', // or 'state_changed'
+    uploadTask.on('state_changed',
         function (snapshot) {
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -68,23 +67,22 @@ fileInput.addEventListener('change', function (e) {
 
             uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
                 const img = document.createElement('img');
+                img.classList.add('c-flex-image');
                 img.src = url;
-                img.classList.add('flex-image');
-                flexContainer.append(img);
+                flexboxContainer.append(img);
             });
         });
 
 });
 var listRef = storageRef.child('images/');
-const flexContainer = document.querySelector('.flex-container');
 // Find all the prefixes and items.
 listRef.listAll().then(function (res) {
     res.items.forEach(function (itemRef) {
         itemRef.getDownloadURL().then(function (url) {
             const img = document.createElement('img');
+            img.classList.add('c-flex-image');
             img.src = url;
-            img.classList.add('flex-image');
-            flexContainer.append(img);
+            flexboxContainer.append(img);
 
         });
     });
@@ -104,13 +102,6 @@ listRef.listAll().then(function (res) {
 //     img.classList.add('flex-image');
 //     flexContainer.append(img);
 // });
-
-
-
-
-
-
-
 
 // fileInput.addEventListener('change', function (e) {
 //     // Get File
@@ -143,36 +134,15 @@ listRef.listAll().then(function (res) {
 //     )
 
 // })
+const siteNavBar = document.querySelector('.c-site-nav__bar');
+const siteNavList = document.querySelector('.c-site-nav__list');
+siteNavBar.addEventListener('click', () => {
+    siteNavList.classList.toggle('h-mobile');
 
-
-
-
-const menuBar = document.getElementById('menuBar');
-const menu = document.getElementById('menu');
-const exitBtn = document.getElementById('exitBtn');
-
-menuBar.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-    }
-    else {
-        menu.style.display = "block";
-    }
-
+});
+const siteNavExit = document.getElementById('exit');
+siteNavExit.addEventListener('click', () => {
+    siteNavList.classList.toggle('h-mobile');
 
 })
-
-exitBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-    }
-    else {
-        menu.style.display === "block"
-    }
-
-
-})
-
 

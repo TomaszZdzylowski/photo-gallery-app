@@ -1,184 +1,4 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-var firebase = require("firebase/app");
-
-// Add the Firebase products that you want to use
-require("firebase/auth");
-require("firebase/database");
-require("firebase/storage");
-
-
-var firebaseConfig = {
-    apiKey: "AIzaSyAPXE2T7jDmg3Ak6vpF-JzzX4VL-qqELb0",
-    authDomain: "fir-crash-app.firebaseapp.com",
-    databaseURL: "https://fir-crash-app.firebaseio.com",
-    projectId: "fir-crash-app",
-    storageBucket: "fir-crash-app.appspot.com",
-    messagingSenderId: "229130637404",
-    appId: "1:229130637404:web:8ae9841526a1bef8211699"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-
-
-const fileInput = document.getElementById('file-input');
-let storageRef = firebase.storage().ref('');
-
-
-fileInput.addEventListener('change', function (e) {
-    var file = e.target.files[0];
-
-    // Create the file metadata
-    var metadata = {
-        contentType: 'image/jpeg'
-    };
-
-    // Upload file and metadata to the object 'images/mountains.jpg'
-    var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
-
-    // Listen for state changes, errors, and completion of the upload.
-    uploadTask.on('state_changed', // or 'state_changed'
-        function (snapshot) {
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
-        }, function (error) {
-            switch (error.code) {
-                case 'storage/unauthorized':
-                    // User doesn't have permission to access the object
-                    break;
-
-                case 'storage/canceled':
-                    // User canceled the upload
-                    break;
-
-                case 'storage/unknown':
-                    // Unknown error occurred, inspect error.serverResponse
-                    break;
-            }
-        }, function complete() {
-            // Upload completed successfully, now we can get the download URL
-
-            uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
-                const img = document.createElement('img');
-                img.src = url;
-                img.classList.add('flex-image');
-                flexContainer.append(img);
-            });
-        });
-
-});
-var listRef = storageRef.child('images/');
-const flexContainer = document.querySelector('.flex-container');
-// Find all the prefixes and items.
-listRef.listAll().then(function (res) {
-    res.items.forEach(function (itemRef) {
-        itemRef.getDownloadURL().then(function (url) {
-            const img = document.createElement('img');
-            img.src = url;
-            img.classList.add('flex-image');
-            flexContainer.append(img);
-
-        });
-    });
-}).catch(function (error) {
-    // Uh-oh, an error occurred!
-});
-
-
-
-
-
-// storageRef.child('images/unnamed.jpg').getDownloadURL().then(function (url) {
-
-
-//     const img = document.createElement('img');
-//     img.src = url;
-//     img.classList.add('flex-image');
-//     flexContainer.append(img);
-// });
-
-
-
-
-
-
-
-
-// fileInput.addEventListener('change', function (e) {
-//     // Get File
-//     const file = e.target.files[0];
-
-//     //Create a storage reference
-//     storageRef = firebase.storage().ref('images/' + file.name);
-
-//     //upload file
-//     const task = storageRef.put(file);
-
-//     task.on('state_changed',
-//         function progress(snapshot) {
-
-//         },
-//         function error(err) {
-
-//         },
-//         function complete() {
-//             storageRef.child(file.name).getDownloadURL().then(function (url) {
-
-//                 const img = document.getElementById('myimg');
-//                 img.src = url;
-//             }).catch(function (error) {
-//                 console.log("err");
-
-
-//             });
-//         }
-//     )
-
-// })
-
-
-
-
-const menuBar = document.getElementById('menuBar');
-const menu = document.getElementById('menu');
-const exitBtn = document.getElementById('exitBtn');
-
-menuBar.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-    }
-    else {
-        menu.style.display = "block";
-    }
-
-
-})
-
-exitBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (menu.style.display === "block") {
-        menu.style.display = "none";
-    }
-    else {
-        menu.style.display === "block"
-    }
-
-
-})
-
-
-
-},{"firebase/app":9,"firebase/auth":10,"firebase/database":11,"firebase/storage":12}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -844,7 +664,7 @@ exports.default = firebase$1;
 exports.firebase = firebase$1;
 
 
-},{"@firebase/component":4,"@firebase/logger":6,"@firebase/util":8,"tslib":14}],3:[function(require,module,exports){
+},{"@firebase/component":3,"@firebase/logger":5,"@firebase/util":7,"tslib":13}],2:[function(require,module,exports){
 (function (global){
 (function() {var firebase = require('@firebase/app').default;var k,aa="function"==typeof Object.defineProperties?Object.defineProperty:function(a,b,c){a!=Array.prototype&&a!=Object.prototype&&(a[b]=c.value)},ba="undefined"!=typeof window&&window===this?this:"undefined"!=typeof global&&null!=global?global:this;function ca(a,b){if(b){var c=ba;a=a.split(".");for(var d=0;d<a.length-1;d++){var e=a[d];e in c||(c[e]={});c=c[e]}a=a[a.length-1];d=c[a];b=b(d);b!=d&&null!=b&&aa(c,a,{configurable:!0,writable:!0,value:b})}}
 function da(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}}function ea(a){var b="undefined"!=typeof Symbol&&Symbol.iterator&&a[Symbol.iterator];return b?b.call(a):{next:da(a)}}
@@ -1222,7 +1042,7 @@ return{getUid:t(b.getUid,b),getToken:t(b.cc,b),addAuthTokenListener:t(b.Wb,b),re
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"@firebase/app":2}],4:[function(require,module,exports){
+},{"@firebase/app":1}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1539,7 +1359,7 @@ exports.ComponentContainer = ComponentContainer;
 exports.Provider = Provider;
 
 
-},{"@firebase/util":8,"tslib":14}],5:[function(require,module,exports){
+},{"@firebase/util":7,"tslib":13}],4:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -16856,7 +16676,7 @@ exports.registerDatabase = registerDatabase;
 
 
 }).call(this,require('_process'))
-},{"@firebase/app":2,"@firebase/component":4,"@firebase/logger":6,"@firebase/util":8,"_process":13,"tslib":14}],6:[function(require,module,exports){
+},{"@firebase/app":1,"@firebase/component":3,"@firebase/logger":5,"@firebase/util":7,"_process":12,"tslib":13}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -17071,7 +16891,7 @@ exports.Logger = Logger;
 exports.setLogLevel = setLogLevel;
 
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -20645,7 +20465,7 @@ registerStorage(firebase);
 exports.registerStorage = registerStorage;
 
 
-},{"@firebase/app":2,"@firebase/component":4,"tslib":14}],8:[function(require,module,exports){
+},{"@firebase/app":1,"@firebase/component":3,"tslib":13}],7:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -22296,7 +22116,7 @@ exports.validateNamespace = validateNamespace;
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"tslib":14}],9:[function(require,module,exports){
+},{"tslib":13}],8:[function(require,module,exports){
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -22327,28 +22147,28 @@ firebase.registerVersion(name, version, 'app');
 module.exports = firebase;
 
 
-},{"@firebase/app":2}],10:[function(require,module,exports){
+},{"@firebase/app":1}],9:[function(require,module,exports){
 'use strict';
 
 require('@firebase/auth');
 
 
 
-},{"@firebase/auth":3}],11:[function(require,module,exports){
+},{"@firebase/auth":2}],10:[function(require,module,exports){
 'use strict';
 
 require('@firebase/database');
 
 
 
-},{"@firebase/database":5}],12:[function(require,module,exports){
+},{"@firebase/database":4}],11:[function(require,module,exports){
 'use strict';
 
 require('@firebase/storage');
 
 
 
-},{"@firebase/storage":7}],13:[function(require,module,exports){
+},{"@firebase/storage":6}],12:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -22534,7 +22354,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (global){
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -22793,4 +22613,154 @@ var __importDefault;
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[1]);
+},{}],14:[function(require,module,exports){
+var firebase = require("firebase/app");
+
+// Add the Firebase products that you want to use
+require("firebase/auth");
+require("firebase/database");
+require("firebase/storage");
+
+
+var firebaseConfig = {
+    apiKey: "AIzaSyAPXE2T7jDmg3Ak6vpF-JzzX4VL-qqELb0",
+    authDomain: "fir-crash-app.firebaseapp.com",
+    databaseURL: "https://fir-crash-app.firebaseio.com",
+    projectId: "fir-crash-app",
+    storageBucket: "fir-crash-app.appspot.com",
+    messagingSenderId: "229130637404",
+    appId: "1:229130637404:web:8ae9841526a1bef8211699"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
+const inputFile = document.querySelector('.input-file');
+const flexboxContainer = document.querySelector('.l-flexbox-container');
+const storageRef = firebase.storage().ref('');
+
+
+
+inputFile.addEventListener('change', function (e) {
+    var file = e.target.files[0];
+    // Create the file metadata
+    var metadata = {
+        contentType: 'image/jpeg'
+    };
+    // Upload file and metadata 
+    var uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+    // Listen for state changes, errors, and completion of the upload.
+    uploadTask.on('state_changed',
+        function (snapshot) {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, function (error) {
+            switch (error.code) {
+                case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    break;
+
+                case 'storage/canceled':
+                    // User canceled the upload
+                    break;
+
+                case 'storage/unknown':
+                    // Unknown error occurred, inspect error.serverResponse
+                    break;
+            }
+        }, function complete() {
+            // Upload completed successfully, now we can get the download URL
+
+            uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
+                const img = document.createElement('img');
+                img.classList.add('c-flex-image');
+                img.src = url;
+                flexboxContainer.append(img);
+            });
+        });
+
+});
+var listRef = storageRef.child('images/');
+// Find all the prefixes and items.
+listRef.listAll().then(function (res) {
+    res.items.forEach(function (itemRef) {
+        itemRef.getDownloadURL().then(function (url) {
+            const img = document.createElement('img');
+            img.classList.add('c-flex-image');
+            img.src = url;
+            flexboxContainer.append(img);
+
+        });
+    });
+}).catch(function (error) {
+    console.log("Err");
+});
+
+
+
+
+
+// storageRef.child('images/unnamed.jpg').getDownloadURL().then(function (url) {
+
+
+//     const img = document.createElement('img');
+//     img.src = url;
+//     img.classList.add('flex-image');
+//     flexContainer.append(img);
+// });
+
+// fileInput.addEventListener('change', function (e) {
+//     // Get File
+//     const file = e.target.files[0];
+
+//     //Create a storage reference
+//     storageRef = firebase.storage().ref('images/' + file.name);
+
+//     //upload file
+//     const task = storageRef.put(file);
+
+//     task.on('state_changed',
+//         function progress(snapshot) {
+
+//         },
+//         function error(err) {
+
+//         },
+//         function complete() {
+//             storageRef.child(file.name).getDownloadURL().then(function (url) {
+
+//                 const img = document.getElementById('myimg');
+//                 img.src = url;
+//             }).catch(function (error) {
+//                 console.log("err");
+
+
+//             });
+//         }
+//     )
+
+// })
+const siteNavBar = document.querySelector('.c-site-nav__bar');
+const siteNavList = document.querySelector('.c-site-nav__list');
+siteNavBar.addEventListener('click', () => {
+    siteNavList.classList.toggle('h-mobile');
+
+});
+const siteNavExit = document.getElementById('exit');
+siteNavExit.addEventListener('click', () => {
+    siteNavList.classList.toggle('h-mobile');
+
+})
+
+
+},{"firebase/app":8,"firebase/auth":9,"firebase/database":10,"firebase/storage":11}]},{},[14]);
