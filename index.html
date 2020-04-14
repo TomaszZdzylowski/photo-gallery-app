@@ -5,48 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Photo Gallery App">
+    <meta name="keywords" content="photo, image, gallery">
+    <meta name="author" content="Tomasz Zdżyłowski">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="scripts/bundle.js" async></script>
 
     <title>Photo Gallery app</title>
+    <link rel="shortcut icon" href="img/gallery.svg" type="image/svg" />
+    <!--Icon made by Freepik from www.flaticon.com-->
+
 </head>
 
 <body>
     <header class="l-header">
-        <div class="logo">PHOTO GALLERY APP</div>
+        <div class="c-logo">Photo gallery</div>
         <nav class="c-site-nav">
             <a href="#" class="c-site-nav__bar h-hide">
                 <img src="/img/ham.svg" alt="toogle menu" class="c-site-nav__imgbar">
             </a>
-            <ul class="c-site-nav__list h-mobile">
-                <li class="c-site-nav__item h-hide" id="exit">
-                    <img src="img/exit.svg" alt="exit btn" class="c-site-nav__imgexit">
+            <ul class="c-site-nav__list h-show">
+                <h4 class="c-site-nav__heading">
+                    MENU
+                </h4>
+                <li class="c-site-nav__exit h-hide">
+                    <img src="img/exit.svg" alt="exit btn" class="c-site-nav__imgexit" id="exit">
                 </li>
                 <li class="c-site-nav__item">
-                    <a href="#" class="c-site-nav__link">About</a>
+                    <a href="#" class="c-site-nav__link">
+                        About
+                    </a>
                 </li>
                 <li class="c-site-nav__item">
-                    <a href="#" class="c-site-nav__link">Home</a>
+                    <a href="#" class="c-site-nav__link">
+                        Home
+                    </a>
                 </li>
                 <li class="c-site-nav__item">
-                    <a href="#" class="c-site-nav__link">Lorem</a>
+                    <a href="#" class="c-site-nav__link">
+                        Lorem
+                    </a>
                 </li>
                 <li class="c-site-nav__item">
-                    <a href="#" class="c-site-nav__link">Lorem</a>
+                    <a href="#" class="c-site-nav__link">
+                        Lorem
+                    </a>
                 </li>
             </ul>
         </nav>
     </header>
-    <main class="l-main">
-        <input type="file" accept="image/jpeg,image/png" class="input-file">
-        <section class="l-flexbox-container">
 
-        </section>
+    <main class="l-flex-container">
+        <h3 class="c-header">Some informations</h3>
+        <ul class="c-flex-list">
 
+        </ul>
     </main>
+    <footer class="l-footer">
+        <div class="c-submit">
+            <label class="c-submit__label">
+                <img class="c-submit__imgcamera" src="img/camera.svg">
+                <input type="file" class=" c-submit__input-file c-input-file" />
+            </label>
+        </div>
+    </footer>
 
 
 
-    <script src="scripts/bundle.js"></script>
+
 </body>
 
 </html>
