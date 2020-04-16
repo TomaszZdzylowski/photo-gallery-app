@@ -1,21 +1,25 @@
-@mixin rwd($breakpoint) {
-  @if $breakpoint==phone {
-    @media only screen and (min-width: 600px) {
+@mixin responsive($breakpoint) {
+  @if ($breakpoint == small-devices) {
+    // Small devices (landscape phones, 576px and up)
+    @media only screen and (min-width: 576px) {
       @content;
     }
   }
-  @if $breakpoint==tab-port {
-    @media only screen and (min-width: 900px) {
+  @if ($breakpoint == medium-devices) {
+    // Medium devices (tablets, 768px and up)
+    @media only screen and (min-width: 768px) {
       @content;
     }
   }
-  @if $breakpoint==tab-land {
-    @media only screen and (min-width: 1400px) {
+  @if ($breakpoint == large-devices) {
+    // Large devices (desktops, 992px and up)
+    @media only screen and (min-width: 992px) {
       @content;
     }
   }
-  @if $breakpoint==big-desktop {
-    @media only screen and (min-width: 1800px) {
+  @if ($breakpoint == extra-large-devices) {
+    // Extra large devices (large desktops, 1200px and up)
+    @media only screen and (min-width: 1200px) {
       @content;
     }
   }

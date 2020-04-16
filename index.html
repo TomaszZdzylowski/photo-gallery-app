@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="scripts/bundle.js" async></script>
 
-    <title>Photo Gallery app</title>
+    <title>Photo Gallery</title>
     <link rel="shortcut icon" href="img/gallery.svg" type="image/svg" />
     <!--Icon made by Freepik from www.flaticon.com-->
 
@@ -19,23 +19,22 @@
 
 <body>
     <header class="l-header">
-        <div class="c-logo">Photo gallery</div>
+        <span class="c-logo">
+            Photo gallery
+        </span>
         <nav class="c-site-nav">
-            <a href="#" class="c-site-nav__bar h-hide">
-                <img src="/img/ham.svg" alt="toogle menu" class="c-site-nav__imgbar">
-            </a>
+            <button href="#" class="c-button js-menu h-hide">
+                <img src="/img/ham.svg" alt="menu" class="c-site-nav__imgbar">
+            </button>
             <ul class="c-site-nav__list h-show">
-                <h4 class="c-site-nav__heading">
-                    MENU
-                </h4>
-                <li class="c-site-nav__exit h-hide">
-                    <img src="img/exit.svg" alt="exit btn" class="c-site-nav__imgexit" id="exit">
-                </li>
-                <li class="c-site-nav__item">
-                    <a href="#" class="c-site-nav__link">
-                        About
-                    </a>
-                </li>
+                <div class="c-site-nav__menu-box">
+                    <h5 class="c-site-nav__heading">
+                        MENU
+                    </h5>
+                    <button class="c-button js-exit h-hide">
+                        <img src="img/exit.svg" alt="exit" class="c-site-nav__imgexit">
+                    </button>
+                </div>
                 <li class="c-site-nav__item">
                     <a href="#" class="c-site-nav__link">
                         Home
@@ -48,7 +47,12 @@
                 </li>
                 <li class="c-site-nav__item">
                     <a href="#" class="c-site-nav__link">
-                        Lorem
+                        About us
+                    </a>
+                </li>
+                <li class="c-site-nav__item">
+                    <a href="#" class="c-site-nav__link">
+                        Contact
                     </a>
                 </li>
             </ul>
@@ -56,11 +60,13 @@
     </header>
 
     <main class="l-flex-container">
-        <h3 class="c-header">Some informations</h3>
+        <h3 class="c-header">
+            Some informations
+        </h3>
         <ul class="c-flex-list">
-
         </ul>
     </main>
+
     <footer class="l-footer">
         <div class="c-submit">
             <label class="c-submit__label">
@@ -69,9 +75,6 @@
             </label>
         </div>
     </footer>
-
-
-
 
 </body>
 

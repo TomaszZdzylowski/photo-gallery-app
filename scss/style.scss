@@ -4,6 +4,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 html,
 body {
   font-size: 100%;
@@ -15,46 +16,49 @@ body {
   top: 0;
   display: flex;
   justify-content: space-between;
-  background-color: #20354f;
+  background-color: $bg-primary;
   align-items: center;
-  height: 60px;
-  padding: 0 1.4em 0 1.4em;
+  padding: 22px 1.4em;
 }
+
 .c-logo {
-  line-height: 20px;
-  color: #ebf7f7;
+  font-size: 1.2rem;
+  color: $font-primary;
 }
+
 .h-show {
   display: none;
-  @include rwd(tab-port) {
+  @include responsive(medium-devices) {
     display: block;
   }
 }
+
 .h-hide {
-  @include rwd(tab-port) {
+  @include responsive(medium-devices) {
     display: none;
   }
 }
+
+.c-button {
+  cursor: pointer;
+  background: inherit;
+  border: 0;
+  outline: 0;
+}
+
 .c-site-nav {
-  &__bar {
-    cursor: pointer;
-  }
-  &__imgbar {
-    height: 20px;
-    width: 20px;
-  }
   &__list {
     position: fixed;
     top: 0;
     right: 0;
     width: 80%;
-    background-color: #151718;
-    opacity: 0.99;
+    background-color: rgba($bg-menu-list, 0.99);
     text-align: center;
     list-style-type: none;
     overflow-y: scroll;
     height: 100vh;
-    @include rwd(tab-port) {
+
+    @include responsive(medium-devices) {
       position: inherit;
       width: auto;
       background: none;
@@ -63,71 +67,56 @@ body {
       overflow-y: inherit;
     }
   }
-  &__heading {
-    background: #25282a;
-    padding: 28px;
-    color: white;
-    border-bottom: 1px solid rgba(#dfdcd9, 0.4);
-    @include rwd(tab-port) {
+
+  &__menu-box {
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    background: $bg-menu-box;
+    padding: 22px;
+    color: $font-primary;
+    border-bottom: 2px solid rgba($border-menu-item, 0.4);
+
+    @include responsive(medium-devices) {
       display: none;
     }
   }
-  &__exit {
-    position: absolute;
-    top: 15px;
-    right: 10px;
+
+  &__heading {
+    font-size: 1.2rem;
   }
-  &__imgexit {
-    color: black;
-    cursor: pointer;
-    width: 25px;
-  }
+
   &__item {
-    padding: 24px 16px;
-    border-bottom: 1px solid rgba(#dfdcd9, 0.4);
-    // &:first-child {
-    //   padding: 0 1.4em 0 1.4em;
-    //   text-align: end;
-    // }
-    &:not(:first-child):hover {
-      background-color: #5ec3c4;
-    }
-    @include rwd(tab-port) {
-      &:not(:first-child):hover {
-        background-color: inherit;
-      }
+    padding: 20px 0;
+    border-bottom: 1px solid rgba($border-menu-item, 0.4);
+
+    @include responsive(medium-devices) {
+      padding: 0;
+      border: 0;
     }
   }
+
   &__link {
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     text-decoration: none;
-    color: white;
+    color: $font-primary;
     padding: 0.6em 1em;
-    @include rwd(tab-port) {
+
+    @include responsive(medium-devices) {
       &:hover {
         background-color: #34475f;
       }
-      color: white;
     }
   }
 }
-// .h-smooth-menu {
-//   animation: smoothMenu 0.75s forwards;
-// }
-// @keyframes smoothMenu {
-//   from {
-//     height: 0;
-//   }
-//   to {
-//     height: 100vh;
-//   }
-// }
+
 .l-flex-container {
-  height: calc(100vh - 107px);
   width: 100%;
   overflow: auto;
   margin: auto;
-  @include rwd(tab-port) {
+
+  @include responsive(medium-devices) {
     height: auto;
     overflow: inherit;
     width: 65%;
@@ -137,29 +126,36 @@ body {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  //min-height: calc(100vh - 107px);
   width: 100%;
+  height: calc(100vh - 143px);
+
   &__item {
     display: flex;
     width: calc(100% / 3 - 2px);
+
     &:nth-child(3n + 1) {
       margin: 0 0 3px 0;
     }
+
     &:nth-child(3n + 0) {
       margin: 0 0 3px 0;
     }
+
     &:nth-child(3n + 2) {
       margin: 0 3px 3px 3px;
     }
-    @include rwd(tab-port) {
+
+    @include responsive(medium-devices) {
       width: calc(100% / 3 - 16px);
 
       &:nth-child(3n + 1) {
         margin: 0 0 16px 0;
       }
+
       &:nth-child(3n + 0) {
         margin: 0 0 16px 0;
       }
+
       &:nth-child(3n + 2) {
         margin: 0 16px 16px 16px;
       }
@@ -167,6 +163,7 @@ body {
   }
   &__image {
     width: 100%;
+    height: 100%;
   }
 }
 .l-footer {
@@ -174,22 +171,22 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50px;
   text-align: center;
-  background: #20354f;
-  padding: 8px;
-  @include rwd(tab-port) {
+  background: $bg-primary;
+
+  @include responsive(medium-devices) {
     display: none;
     position: static;
   }
 }
 .c-submit {
+  margin: 8px;
+
   &__label {
     cursor: pointer;
     font-size: 0;
   }
-  &__imgcamera {
-  }
+
   &__input-file {
     width: 0;
     height: 0;
@@ -197,9 +194,6 @@ body {
     overflow: hidden;
     padding: 0;
     position: absolute !important;
-  }
-  &__input-text {
-    color: white;
   }
 }
 .h-stack-order {

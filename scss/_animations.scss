@@ -1,0 +1,11 @@
+.h-smooth-menu {
+    animation: smoothMenu 0.75s forwards;
+}
+@keyframes smoothMenu {
+    from {
+        width: 0;
+    }
+    to {
+        width: 80%;
+    }
+}
