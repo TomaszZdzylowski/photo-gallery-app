@@ -116,11 +116,14 @@ body {
   overflow: auto;
   margin: auto;
 
-  @include responsive(medium-devices) {
+  @include responsive(large-devices) {
     height: auto;
     overflow: inherit;
     width: 65%;
   }
+}
+.c-header {
+  text-align: center;
 }
 .c-flex-list {
   list-style-type: none;
@@ -128,6 +131,9 @@ body {
   flex-wrap: wrap;
   width: 100%;
   height: calc(100vh - 143px);
+  @include responsive(medium-devices) {
+    height: 100vh;
+  }
 
   &__item {
     display: flex;
@@ -145,19 +151,19 @@ body {
       margin: 0 3px 3px 3px;
     }
 
-    @include responsive(medium-devices) {
-      width: calc(100% / 3 - 16px);
+    @include responsive(large-devices) {
+      width: calc(100% / 3 - 32px);
 
       &:nth-child(3n + 1) {
-        margin: 0 0 16px 0;
+        margin: 0 0 32px 0;
       }
 
       &:nth-child(3n + 0) {
-        margin: 0 0 16px 0;
+        margin: 0 0 32px 0;
       }
 
       &:nth-child(3n + 2) {
-        margin: 0 16px 16px 16px;
+        margin: 0 32px 32px 32px;
       }
     }
   }

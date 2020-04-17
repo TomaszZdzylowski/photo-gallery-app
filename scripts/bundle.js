@@ -22653,7 +22653,7 @@ var __importDefault;
         const fileNameWithoutExtention = fileName.replace(/\.[^/.]+$/, "");
         let newDate = new Date().getTime();
 
-        console.log(newDate);
+        //console.log(newDate);
 
 
         const imageRef = firebaseStorage.child(`photos/${fileNameWithoutExtention}-${newDate}`);
