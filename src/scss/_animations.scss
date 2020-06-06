@@ -1,11 +1,25 @@
-.h-smooth-menu {
-    animation: smoothMenu 0.75s forwards;
+$width1: 100%;
+$width2: 0%;
+
+.h-rightToLeft {
+    animation: rightToLeft 0.75s forwards;
 }
-@keyframes smoothMenu {
+@keyframes rightToLeft {
     from {
         width: 0;
     }
     to {
         width: 100%;
+    }
+}
+.h-leftToRight {
+    animation: leftToRight 0.75s forwards;
+}
+@keyframes leftToRight {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
     }
 }

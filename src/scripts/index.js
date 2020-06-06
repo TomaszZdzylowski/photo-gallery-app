@@ -75,7 +75,7 @@ siteNavBar.addEventListener('click', () => {
     siteNavList.classList.toggle('h-show');
     siteNavBar.classList.toggle('h-show');
     siteFooter.classList.toggle('h-stack-order');
-    siteNavList.classList.toggle('h-smooth-menu');
+    siteNavList.classList.toggle('h-rightToLeft');
 
 
 });
@@ -85,7 +85,7 @@ siteNavExit.addEventListener('click', () => {
     siteNavList.classList.toggle('h-show');
     siteNavBar.classList.toggle('h-show');
     siteFooter.classList.toggle('h-stack-order');
-    siteNavList.classList.toggle('h-smooth-menu');
+    siteNavList.classList.toggle('h-rightToLeft');
 
 })
 
