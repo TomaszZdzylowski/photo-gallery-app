@@ -3,10 +3,15 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var path = require('path');
 
 module.exports = {
-    entry: './src/scripts/index.js',
+    entry: {
+        index: './src/scripts/index.js',
+        login: './src/scripts/forms/login.js',
+        register: './src/scripts/forms/register.js'
+    },
+
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        path: __dirname + '/dist',
+        filename: '[name].js'
     },
     module: {
         rules: [
@@ -51,7 +56,18 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-            filename: "./index.html"
+            filename: "./index.html",
+            chunks: ['index']
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/html/login.html",
+            filename: "./login.html",
+            chunks: ['login']
+        }),
+        new HtmlWebpackPlugin({
+            template: "./src/html/register.html",
+            filename: "./register.html",
+            chunks: ['register']
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css',
