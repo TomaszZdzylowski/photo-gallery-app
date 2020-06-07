@@ -1,5 +1,6 @@
 import '../scss/style.scss';
 import { firebaseStorage } from './firebaseApi';
+import { logoutUser } from './userService';
 
 
 
@@ -90,6 +91,8 @@ siteNavExit.addEventListener('click', () => {
 })
 
 
+const logoutButton = document.querySelector('.js-logoutUser');
 
+logoutUser(logoutButton);
 
 
