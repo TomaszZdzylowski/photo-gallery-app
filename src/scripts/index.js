@@ -19,6 +19,7 @@ const createElementForImage = (imageUrl) => {
     flexList.append(flexItem);
     flexItem.append(flexImage);
 }
+
 inputFile.addEventListener("change", (e) => {
     const file = e.target.files[0];
     const fileName = file.name;
@@ -38,19 +39,20 @@ inputFile.addEventListener("change", (e) => {
         img.onload = () => {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext("2d");
-            const imageDataUrl = canvas.toDataURL("image/png");
-            const uploadImage = imageRef.putString(imageDataUrl, "data_url");
-
             canvas.width = 480;
             canvas.height = 480;
             ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            inputFile.value = "";
 
+            const imageDataUrl = canvas.toDataURL("image/png");
+            const uploadImage = imageRef.putString(imageDataUrl, "data_url");
+
+            inputFile.value = "";
             uploadImage.on("state_changed", null, null, function complete() {
                 uploadImage.snapshot.ref.getDownloadURL()
                     .then(url => createElementForImage(url));
             })
         }
+
     }
     reader.readAsDataURL(file);
 })
